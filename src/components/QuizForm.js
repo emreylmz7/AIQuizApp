@@ -18,7 +18,7 @@ const QuizForm = ({ onStartQuiz }) => {
 
   return (
     <div className="card">
-      <h2 className="title">Yeni Quiz Başlat</h2>
+      <h2 className="title">Yeni Bir Quiz Başlat</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="topic" className="label">
