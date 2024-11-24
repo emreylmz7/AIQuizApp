@@ -244,6 +244,15 @@ body {
   text-align: center;
 }
 
+.error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--error);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
 @media (max-width: 640px) {
   .container {
     padding: 1rem;
@@ -261,11 +270,4 @@ body {
     font-size: 1.5rem;
   }
 }
-.error {
-  background-color: rgba(239, 68, 68, 0.1);
-  color: var(--error);
-  padding: 1rem;
-  border-radius: 0.5rem;
-  margin-bottom: 1rem;
-  text-align: center;
-}
+
