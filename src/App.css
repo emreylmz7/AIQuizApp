@@ -158,11 +158,32 @@ body {
   border-color: var(--primary);
 }
 
+/* Kullanıcının seçtiği seçenek */
 .option-button.selected {
-  background-color: #eff6ff;
+  background-color: var(--primary);
+  color: white;
   border-color: var(--primary);
-  color: var(--primary);
 }
+
+/* Doğru cevap */
+.option-button.correct {
+  background-color: var(--success);
+  color: white;
+  border-color: var(--success);
+}
+
+/* Yanlış cevap */
+.option-button.incorrect {
+  background-color: var(--error);
+  color: white;
+  border-color: var(--error);
+}
+
+.option-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
 
 /* Quiz Results Styles */
 .results-container {
@@ -239,4 +260,12 @@ body {
   .stat-value {
     font-size: 1.5rem;
   }
+}
+.error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--error);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }

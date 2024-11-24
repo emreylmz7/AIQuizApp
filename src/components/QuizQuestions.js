@@ -1,31 +1,43 @@
 import React, { useState } from "react";
 
-
 const QuizQuestions = ({ questions, onComplete }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const currentQuestion = questions[currentIndex];
 
   const handleAnswer = (option) => {
     setSelectedOption(option);
   };
 
   const handleNext = () => {
-    if (selectedOption === null) return;
-    
-    const newAnswers = [...answers, selectedOption.isCorrect];
-    setAnswers(newAnswers);
-    
-    if (currentIndex < questions.length - 1) {
-      setCurrentIndex(currentIndex + 1);
-      setSelectedOption(null);
+    if (!selectedOption) {
+      setErrorMessage("Lütfen bir seçenek işaretleyin.");
+      return;
+    }
+    setErrorMessage(null); // Seçim yapıldığında hata mesajını temizle
+  
+    if (showCorrectAnswer) {
+      const newAnswers = [...answers, selectedOption.isCorrect];
+      setAnswers(newAnswers);
+  
+      if (currentIndex < questions.length - 1) {
+        setCurrentIndex(currentIndex + 1);
+        setSelectedOption(null);
+        setShowCorrectAnswer(false);
+      } else {
+        onComplete(newAnswers);
+      }
     } else {
-      onComplete(newAnswers);
+      setShowCorrectAnswer(true);
     }
   };
+  
 
   const progress = ((currentIndex + 1) / questions.length) * 100;
-  const currentQuestion = questions[currentIndex];
 
   return (
     <div className="card">
@@ -40,7 +52,9 @@ const QuizQuestions = ({ questions, onComplete }) => {
           Soru {currentIndex + 1} / {questions.length}
         </p>
       </div>
-      
+
+      {errorMessage && <p className="error">{errorMessage}</p>}
+
       <h3 className="question">{currentQuestion.question}</h3>
       
       <div className="options-grid">
@@ -49,8 +63,15 @@ const QuizQuestions = ({ questions, onComplete }) => {
             key={index}
             className={`option-button ${
               selectedOption === option ? 'selected' : ''
+            } ${
+              showCorrectAnswer && option.isCorrect
+                ? 'correct'
+                : showCorrectAnswer && selectedOption === option && !option.isCorrect
+                ? 'incorrect'
+                : ''
             }`}
             onClick={() => handleAnswer(option)}
+            disabled={showCorrectAnswer}
           >
             {option.text}
           </button>
@@ -59,11 +80,14 @@ const QuizQuestions = ({ questions, onComplete }) => {
 
       <button
         onClick={handleNext}
-        disabled={selectedOption === null}
         className="button"
         style={{ marginTop: '1.5rem' }}
       >
-        {currentIndex === questions.length - 1 ? "Quiz'i Bitir" : "Sonraki Soru"}
+        {showCorrectAnswer
+          ? currentIndex === questions.length - 1
+            ? "Quiz'i Bitir"
+            : "Sonraki Soru"
+          : "Cevabı Kontrol Et"}
       </button>
     </div>
   );
