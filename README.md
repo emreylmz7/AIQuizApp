@@ -1,9 +1,9 @@
 
 ![dsfsdf](https://github.com/user-attachments/assets/6fcaf3bf-68cf-40a8-977e-08eb3d783f7b)
 
-# Quizfy - AI-Powered Quiz Application
+# Quizify - AI-Powered Quiz Application
 
-**Quizfy** is a sleek and interactive quiz app built with **React** and powered by **Gemini AI**. It enables users to select topics, answer intelligently curated questions, and view personalized results. Designed for a fun and engaging experience, the app leverages AI to enhance the quiz functionality and provide diverse question sets.
+**Quizify** is a sleek and interactive quiz app built with **React** and powered by **Gemini AI**. It enables users to select topics, answer intelligently curated questions, and view personalized results. Designed for a fun and engaging experience, the app leverages AI to enhance the quiz functionality and provide diverse question sets.
 
 ## 🚀 Features
 
